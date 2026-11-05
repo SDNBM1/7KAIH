@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buku Kas PGRI Ranting Baros</title>
+<style>
+:root{--bg:#f3f5f9;--surface:#fff;--ink:#14213d;--muted:#5c6b82;--line:#e2e7ef;--brand:#1b3a6b;--brand2:#274b87;--on-brand:#fff;--in:#0f7b4f;--in-bg:#e3f5ec;--out:#b3261e;--out-bg:#fbe9e7;--gold:#e0b45a;--shadow:0 1px 3px rgba(20,33,61,.08),0 6px 20px rgba(20,33,61,.06);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1522;--surface:#162033;--ink:#e8edf6;--muted:#9aa8bf;--line:#26324a;--brand:#0b1630;--brand2:#1d3566;--in:#4cc790;--in-bg:#12362a;--out:#ff8a80;--out-bg:#3d1c1a;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1522;--surface:#162033;--ink:#e8edf6;--muted:#9aa8bf;--line:#26324a;--brand:#0b1630;--brand2:#1d3566;--in:#4cc790;--in-bg:#12362a;--out:#ff8a80;--out-bg:#3d1c1a;--shadow:none;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+header{background:linear-gradient(135deg,var(--brand),var(--brand2));color:var(--on-brand);padding:28px 20px 70px;border-bottom:3px solid var(--gold)}
+.wrap{max-width:980px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+h1{margin:0;font-size:1.6rem;letter-spacing:.2px}
+.sub{margin:4px 0 0;opacity:.8;font-size:.9rem}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+main{max-width:980px;margin:-48px auto 40px;padding:0 16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--surface);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.card small{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.card b{display:block;font-size:1.45rem;margin-top:4px;font-variant-numeric:tabular-nums}
+.card.in b{color:var(--in)}.card.out b{color:var(--out)}.card.bal{border-top:3px solid var(--gold)}
+.panel{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--line);margin-top:18px;overflow:hidden}
+.tools{display:flex;flex-wrap:wrap;gap:10px;padding:14px;border-bottom:1px solid var(--line);align-items:center}
+.tools .sp{flex:1}
+input,select,button{font:inherit;color:var(--ink)}
+input,select{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 11px;min-width:0}
+input:focus,select:focus{outline:2px solid var(--brand2);outline-offset:1px}
+button{cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:8px 14px;font-weight:600}
+button.pri{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+button.gh{border:none;background:none;padding:4px 8px;color:var(--muted);font-weight:500}
+button.gh:hover{color:var(--ink)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);text-align:left;padding:10px 14px;background:var(--bg);white-space:nowrap}
+td{padding:11px 14px;border-top:1px solid var(--line);font-size:.92rem;vertical-align:middle}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg);color:var(--muted)}
+.in-t{color:var(--in);font-weight:600}.out-t{color:var(--out);font-weight:600}
+.empty{padding:36px;text-align:center;color:var(--muted)}
+.savebar{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);margin-top:16px;background:var(--brand);color:var(--on-brand);border-radius:12px;padding:12px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.savebar span{flex:1;min-width:160px;font-size:.9rem}
+.savebar button{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+.savebar button.gh{background:none;color:#fff;border:1px solid rgba(255,255,255,.4)}
+dialog{border:none;border-radius:16px;padding:0;width:min(440px,92vw);background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,18,35,.55)}
+.dlg{padding:20px;display:grid;gap:12px}
+.dlg h2{margin:0;font-size:1.15rem}
+.dlg label{display:grid;gap:4px;font-size:.8rem;font-weight:600;color:var(--muted)}
+.dlg .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dlg .act{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
+.err{color:var(--out);font-size:.82rem;min-height:1em}
+.foot{text-align:center;color:var(--muted);font-size:.78rem;margin-top:22px}
+.credit{text-align:center;color:var(--muted);font-size:.8rem;font-weight:600;margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-size:.85rem;display:none;z-index:50}
+@media print{header{padding-bottom:20px}.tools,.savebar,.edit-only{display:none!important}main{margin-top:10px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top">
+  <div><h1 id="ttl">Buku Kas PGRI Ranting Baros</h1><p class="sub">Catatan pemasukan &amp; pengeluaran</p></div>
+  <span class="badge" id="badge" data-dyn><i></i>Memuat…</span>
+</div></header>
+
+<main>
+  <section class="cards" id="cards" data-dyn></section>
+
+  <section class="panel">
+    <div class="tools">
+      <input id="q" type="search" placeholder="Cari keterangan…" style="flex:1;min-width:150px">
+      <select id="ftype"><option value="">Semua jenis</option><option value="in">Pemasukan</option><option value="out">Pengeluaran</option></select>
+      <select id="fmon" data-dyn></select>
+      <span class="sp"></span>
+      <button class="edit-only" id="bset" hidden>Pengaturan</button>
+      <button class="pri edit-only" id="badd" hidden>+ Transaksi</button>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Masuk</th><th class="num">Keluar</th><th class="num">Saldo</th><th class="edit-only" style="width:1%"></th></tr></thead>
+      <tbody id="rows" data-dyn></tbody>
+    </table></div>
+  </section>
+
+  <div class="savebar" id="bar" data-dyn hidden></div>
+  <p class="foot">Hanya pemilik yang dapat mengubah catatan ini. Pengunjung lain hanya dapat melihat.</p>
+  <p class="credit">Developed by Fitri Yusmaniah<br>SD Negeri Baros Mandiri 1</p>
+</main>
+
+<dialog id="dlg"><div class="dlg">
+  <h2 id="dt">Transaksi</h2>
+  <div class="row">
+    <label>Tanggal<input id="f-date" type="date"></label>
+    <label>Jenis<select id="f-type"><option value="in">Pemasukan</option><option value="out">Pengeluaran</option></select></label>
+  </div>
+  <label>Keterangan<input id="f-desc" type="text" maxlength="120" placeholder="Contoh: Penjualan harian"></label>
+  <label>Jumlah (Rp)<input id="f-amt" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></label>
+  <div class="err" id="ferr"></div>
+  <div class="act"><button id="fcancel">Batal</button><button class="pri" id="fok">Simpan</button></div>
+</div></dialog>
+
+<dialog id="dset"><div class="dlg">
+  <h2>Pengaturan</h2>
+  <label>Nama buku kas<input id="s-title" type="text" maxlength="60"></label>
+  <label>Saldo awal (Rp)<input id="s-open" type="number" step="1" inputmode="numeric"></label>
+  <div class="act"><button id="scancel">Batal</button><button class="pri" id="sok">Terapkan</button></div>
+</div></dialog>
+<div id="toast"></div>
+
+<script id="data" type="application/json">{"title":"Buku Kas PGRI Ranting Baros","opening":5000000,"nextId":6,"entries":[{"id":1,"date":"2026-11-01","type":"in","cat":"Penjualan","desc":"Penjualan minggu pertama","amount":3250000},{"id":2,"date":"2026-11-02","type":"out","cat":"Perlengkapan","desc":"Pembelian bahan baku","amount":1400000},{"id":3,"date":"2026-11-03","type":"out","cat":"Operasional","desc":"Listrik dan internet","amount":650000},{"id":4,"date":"2026-11-04","type":"in","cat":"Penjualan","desc":"Penjualan online","amount":1875000},{"id":5,"date":"2026-11-05","type":"out","cat":"Transportasi","desc":"Ongkos kirim pesanan","amount":180000}]}</script>
+
+<script>
+const $ = s => document.querySelector(s);
+const rp = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fdate = d => new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});
+const fmon = m => new Date(m+'-01T00:00:00').toLocaleDateString('id-ID',{month:'long',year:'numeric'});
+const ORIG = JSON.parse($('#data').textContent);
+let draft = structuredClone(ORIG), dirty = false, canEdit = false, artifact = null, editId = null;
+
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600)}
+
+function render(){
+  document.title = draft.title; $('#ttl').textContent = draft.title;
+  const all = [...draft.entries].sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);
+  let bal = draft.opening, tin = 0, tout = 0; const run = new Map();
+  all.forEach(e=>{ if(e.type==='in'){tin+=e.amount;bal+=e.amount}else{tout+=e.amount;bal-=e.amount} run.set(e.id,bal) });
+  $('#cards').innerHTML =
+    `<div class="card"><small>Saldo awal</small><b>${rp(draft.opening)}</b></div>`+
+    `<div class="card in"><small>Total pemasukan</small><b>${rp(tin)}</b></div>`+
+    `<div class="card out"><small>Total pengeluaran</small><b>${rp(tout)}</b></div>`+
+    `<div class="card bal"><small>Saldo saat ini</small><b>${rp(bal)}</b></div>`;
+  const months = [...new Set(all.map(e=>e.date.slice(0,7)))].reverse();
+  const cur = $('#fmon').value;
+  $('#fmon').innerHTML = '<option value="">Semua bulan</option>'+months.map(m=>`<option value="${m}"${m===cur?' selected':''}>${esc(fmon(m))}</option>`).join('');
+  const q = $('#q').value.trim().toLowerCase(), ft = $('#ftype').value, fm = $('#fmon').value;
+  const list = all.filter(e=>(!ft||e.type===ft)&&(!fm||e.date.startsWith(fm))&&(!q||e.desc.toLowerCase().includes(q))).reverse();
+  $('#rows').innerHTML = list.length ? list.map(e=>`<tr>
+    <td>${esc(fdate(e.date))}</td><td>${esc(e.desc)}</td>
+    <td class="num in-t">${e.type==='in'?rp(e.amount):''}</td><td class="num out-t">${e.type==='out'?rp(e.amount):''}</td>
+    <td class="num"><b>${rp(run.get(e.id))}</b></td>
+    <td class="edit-only" ${canEdit?'':'hidden'} style="white-space:nowrap"><button class="gh" data-a="edit" data-id="${e.id}">Ubah</button><button class="gh" data-a="del" data-id="${e.id}">Hapus</button></td>
+  </tr>`).join('') : '<tr><td colspan="6" class="empty">Belum ada transaksi yang cocok.</td></tr>';
+  document.querySelectorAll('.edit-only').forEach(el=>el.hidden=!canEdit);
+  $('#badge').innerHTML = canEdit ? '<i></i>Mode pemilik · dapat mengedit' : '<i></i>Hanya lihat';
+  const bar = $('#bar');
+  bar.hidden = !(canEdit && dirty);
+  bar.innerHTML = '<span>Ada perubahan yang belum disimpan.</span><button class="gh" data-a="reset">Batalkan</button><button data-a="save">Simpan perubahan</button>';
+}
+
+function buildDoc(){
+  const c = document.documentElement.cloneNode(true);
+  c.querySelector('#data').textContent = JSON.stringify(draft).replace(/</g,'\\u003c');
+  c.querySelectorAll('[data-dyn]').forEach(el=>{el.innerHTML='';});
+  c.querySelector('#toast').textContent='';
+  return '<!doctype html>\n'+c.outerHTML;
+}
+
+async function save(){
+  if(!artifact) return;
+  try { await artifact.publish(buildDoc()); toast('Tersimpan'); }
+  catch(e){ toast(e && e.code==='conflict' ? 'Versi berubah, memuat ulang…' : 'Gagal menyimpan. Hanya pemilik yang dapat mengubah.'); }
+}
+
+function openForm(id){
+  editId = id; const e = draft.entries.find(x=>x.id===id);
+  $('#dt').textContent = e ? 'Ubah transaksi' : 'Transaksi baru';
+  $('#f-date').value = e ? e.date : new Date().toISOString().slice(0,10);
+  $('#f-type').value = e ? e.type : 'in'; $('#f-desc').value = e ? e.desc : '';
+  $('#f-amt').value = e ? e.amount : '';
+  $('#ferr').textContent=''; $('#dlg').showModal();
+}
+
+$('#fok').onclick = ()=>{
+  const date=$('#f-date').value, desc=$('#f-desc').value.trim(), amt=Math.round(Number($('#f-amt').value));
+  if(!date||!desc||!(amt>0)){ $('#ferr').textContent='Lengkapi tanggal, keterangan, dan jumlah (lebih dari 0).'; return; }
+  const rec = {date,desc,amount:amt,type:$('#f-type').value};
+  if(editId!==null){ Object.assign(draft.entries.find(x=>x.id===editId),rec); }
+  else { draft.entries.push({id:draft.nextId++,...rec}); }
+  dirty=true; $('#dlg').close(); render();
+};
+$('#fcancel').onclick = ()=>$('#dlg').close();
+$('#badd').onclick = ()=>openForm(null);
+$('#bset').onclick = ()=>{ $('#s-title').value=draft.title; $('#s-open').value=draft.opening; $('#dset').showModal(); };
+$('#scancel').onclick = ()=>$('#dset').close();
+$('#sok').onclick = ()=>{ draft.title=$('#s-title').value.trim()||draft.title; draft.opening=Math.round(Number($('#s-open').value)||0); dirty=true; $('#dset').close(); render(); };
+
+document.addEventListener('click', ev=>{
+  const b = ev.target.closest('[data-a]'); if(!b||!canEdit) return;
+  const id = Number(b.dataset.id);
+  if(b.dataset.a==='edit') openForm(id);
+  else if(b.dataset.a==='del'){ if(confirm('Hapus transaksi ini?')){ draft.entries=draft.entries.filter(x=>x.id!==id); dirty=true; render(); } }
+  else if(b.dataset.a==='reset'){ draft=structuredClone(ORIG); dirty=false; render(); }
+  else if(b.dataset.a==='save') save();
+});
+['#q','#ftype','#fmon'].forEach(s=>$(s).addEventListener('input',render));
+
+render();
+(async()=>{
+  try{
+    const [a,u] = await Promise.all([claude.use('artifact'), claude.use('user')]);
+    artifact = a; canEdit = !!(a && u && u.isOwner());
+  }catch(e){ canEdit=false; }
+  render();
+})();
+</script>
+</body>
+</html>
